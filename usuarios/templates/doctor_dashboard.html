@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Rehabilitación - RehabilitaTec</title>
+    <link rel="stylesheet" href="{% static 'css/DrDashboardN.css' %}">
+    <link rel="stylesheet" href="{% static 'css/addPatient.css' %}">
+</head>
+
+<body>
+
+    <div class="WaterMarkGithub">
+        <a href="https://github.com/WilliamsACE"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+        </svg> Website by Williams Cantu  ↗</a>
+    </div>
+
+        <div class="overlayfondo" id="overlayfondo"></div>
+        <div class="overlayClass" id="overlayID">
+                <div class="rehab-containerOverlay">
+                <div class="rehab-header">
+                    <button class="close-btn" id="closeOverlay">×</button>
+                    <h1>Agregar Nuevo Paciente 👤</h1>
+                    <div style="width: 32px;"></div> <!-- Espacio para equilibrar el diseño -->
+                </div>
+                
+                <div class="patient-section">
+                    <form id="add-patient-form" class="patient-form-container">
+                        <div class="form-group">
+                            <label class="label" for="patient-name">Nombre completo</label>
+                            <input type="text" id="patient-name" class="form-control" placeholder="Ej: María Rodríguez" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="patient-weight">Peso</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="patient-weight" class="form-control" placeholder="0" min="0" step="1" required>
+                                    <span class="unit">kg</span>
+                                    <div class="number-controls">
+                                        <button type="button" class="number-btn" data-input="patient-weight" data-direction="up">▲</button>
+                                        <button type="button" class="number-btn" data-input="patient-weight" data-direction="down">▼</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="label" for="patient-height">Altura</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="patient-height" class="form-control" placeholder="0" min="0" step="1" required>
+                                    <span class="unit">cm</span>
+                                    <div class="number-controls">
+                                        <button type="button" class="number-btn" data-input="patient-height" data-direction="up">▲</button>
+                                        <button type="button" class="number-btn" data-input="patient-height" data-direction="down">▼</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="label" for="patient-calf">Tamaño de la pantorrilla</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="patient-calf" class="form-control" placeholder="0" min="0" step="1" required>
+                                <span class="unit">cm</span>
+                                <div class="number-controls">
+                                    <button type="button" class="number-btn" data-input="patient-calf" data-direction="up">▲</button>
+                                    <button type="button" class="number-btn" data-input="patient-calf" data-direction="down">▼</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <button type="submit" class="submit-btn" id="BtnSubmit">Agregar Paciente</button>
+                    </form>
+                    
+                    <div class="status-indicator status-connected">
+                        <div class="status-dot"></div>
+                        <span>Sistema conectado - Listo para agregar pacientes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="rehab-container">
+
+        <!-- ===== AGREGAR PACIENTE OVERLAY ===== -->
+        <!-- ===== HEADER ===== -->
+        <div class="rehab-header">
+            <p class="welcomeDr">Bienvenido doctor <strong>{{ nombre }}!</strong></p>
+            <h1>❤️‍🩹 Rehabilitación ❤️‍🩹</h1>
+            <p>Panel de control para sesiones de rehabilitación del cuádriceps</p>
+        </div>
+
+        <div class="rehab-content">
+            <!-- ===== SECCIÓN DE PACIENTES ===== -->
+            <div class="patient-section">
+                <h2 class="section-title">Pacientes</h2>
+
+                <div class="patient-info">
+                    <h3>Datos del paciente y configuración</h3>
+
+                    <div class="form-group autocomplete-container">
+                        <label for="patient-select">Paciente seleccionado:</label>
+                        <input type="text" id="patient-select" class="form-control" placeholder="Escriba para buscar..." autocomplete="off">
+                        <div class="autocomplete-list" id="autocomplete-list"></div>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="weight">Peso (kg):</label>
+                        <input id="weight" class="form-control" placeholder="0" step="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Altura (cm):</label>
+                        <input id="height" class="form-control" placeholder="165" step="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calf-length">Longitud pantorrilla (cm):</label>
+                        <input type="number" id="calf-length" class="form-control" placeholder="0" step="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sessions">Sesiones realizadas:</label>
+                        <input id="sessions" class="form-control" value="0" readonly >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="degrees">Grados a mover (max 90):</label>
+                        <input type="number" id="degrees" class="form-control" placeholder="45" min="0">
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="repetitions">Repeticiones:</label>
+                        <input type="number" id="repetitions" class="form-control" placeholder="10">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stop-degrees">Grados antes de frenar:</label>
+                        <input type="number" id="stop-degrees" class="form-control" value="0">
+                    </div>
+                </div>
+
+                <div class="movement-mode">
+                    <label>Modo de movimiento:</label>
+                    <div class="mode-selector" id="mode-selectorID">
+                        <div class="mode-option">Pasivo</div>
+                        <div class="mode-option">Asistido</div>
+                    </div>
+                </div>
+
+                <div class="patient-actions">
+                    
+                        <button class="btn btn-secondary" id="btnpaciente">Agregar nuevo paciente</button>
+
+                </div>
+            </div>
+
+            <!-- ===== SECCIÓN DE CONTROL ===== -->
+            <div class="control-section">
+                <h2 class="section-title">Control</h2>
+
+                <div class="sectionSelectMachine">
+                    <h3>Seleccionar Rehabilitador</h3>
+
+                    <div class="status-indicator status-disconnected" id="status-indicator">
+                        <div class="status-dot"></div>
+                        <div><strong><p id="estado">Cargando...</p></strong></div>
+                    </div>
+
+                    <div class="form-group autocomplete-container">
+                        <label for="rehabilitador-select" class="label">Rehabilitador Seleccionado:</label>
+                        <input type="text" id="rehabilitador-select" class="form-control" placeholder="Escriba para buscar..." autocomplete="off">
+                        <div class="autocomplete-machine" id="autocomplete-machine"></div>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <div class="control-title">Control de Sesión</div>
+                    <div class="control-buttons">
+                        <button class="btn btn-success btn-large" id="start-btn">Iniciar</button>
+                        <button class="btn btn-danger btn-large" id="stop-btn">Detener</button>
+                    </div>
+                    <div class="webpageby">
+                        <a href="https://github.com/WilliamsACE"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                        </svg>  Website by Williams Cantu   ↗</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const URL_LISTA_PACIENTES = "{% url 'lista_pacientes' %}";
+    </script>
+    <!-- ===== CARGAR EL JS ===== -->
+    <script src="{%static 'js/doctor_dashboard.js'%}"></script>
+</body>
+</html>

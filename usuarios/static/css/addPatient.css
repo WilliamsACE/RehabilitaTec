@@ -1,0 +1,398 @@
+.overlayClass {
+    transition: all 0.3s ease-in-out;
+    opacity: 0%;
+    position: fixed;
+    height: calc(70vh - 1rem);
+    max-height: 100%;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    z-index: 1000;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rehab-containerOverlay-header {
+    color: white;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rehab-containerOverlay-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+    background-size: cover;
+}
+
+.rehab-containerOverlay-header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex: 1;
+    text-align: center;
+}
+
+.rehab-containerOverlay-header p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    position: relative;
+    font-weight: 300;
+}
+
+.close-btn {
+    position: relative;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.patient-section input::placeholder {
+    opacity: 45%;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 1.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 25px;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    border-radius: 2px;
+}
+
+/* Layout compacto para el formulario */
+.patient-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    flex: 1;
+    padding: 1rem;
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #c8e0f3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    background-color: var(--background);
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.input-with-unit {
+    position: relative;
+}
+
+/* Estilo para inputs numéricos con unidades */
+.input-with-unit input[type="number"] {
+    padding-right: 60px;
+}
+
+.unit {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+/* Personalización flechas WebKit */
+.input-with-unit input[type="number"]::-webkit-outer-spin-button,
+.input-with-unit input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Para Firefox */
+.input-with-unit input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Flechas personalizadas */
+.number-controls {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    width: 24px;
+}
+
+.number-btn {
+    background: transparent;
+    border: 0;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: 8px;
+    transition: all 0.2s;
+    background-color: var(--white);
+}
+
+.number-btn:hover {
+    color: var(--primary-dark);
+}
+
+.number-btn:first-child {
+    border-radius: 3px 3px 0 0;
+    border-bottom: none;
+}
+
+.number-btn:last-child {
+    border-radius: 0 0 3px 3px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.submit-btn {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 0.9rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    background: rgba(148, 129, 127, 0.151);
+    border-radius: 6px;
+    border-left: 3px solid gray;
+    font-size: 0.8rem;
+    margin-bottom: 1vh;
+}
+
+.status-connected {
+    background: rgba(76, 175, 80, 0.1);
+    border-left: 3px solid var(--success);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.status-connected .status-dot {
+    background-color: var(--success);
+}
+
+/* Media Queries para Responsive */
+@media (max-width: 768px) {
+    .overlayClass {
+        height: 85vh;
+        max-height: 85vh;
+        width: 95%;
+        max-width: 95%;
+        border-radius: 8px;
+    }
+    
+    .rehab-containerOverlay-header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .rehab-containerOverlay-header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .rehab-containerOverlay-header p {
+        font-size: 0.75rem;
+    }
+    
+    .patient-form-container {
+        padding: 0.8rem;
+        gap: 1rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .form-control {
+        padding: 0.65rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .section-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .submit-btn {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .close-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .overlayClass {
+        height: 90vh;
+        max-height: 90vh;
+        width: 98%;
+        max-width: 98%;
+        border-radius: 6px;
+    }
+    
+    .rehab-containerOverlay-header {
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .rehab-containerOverlay-header h1 {
+        font-size: 1.1rem;
+    }
+    
+    .patient-form-container {
+        padding: 0.6rem;
+        gap: 0.8rem;
+    }
+    
+    .form-control {
+        padding: 0.6rem 0.7rem;
+    }
+    
+    .section-title {
+        font-size: 0.9rem;
+    }
+    
+    .label {
+        font-size: 0.7rem;
+    }
+    
+    .input-with-unit input[type="number"] {
+        padding-right: 50px;
+    }
+    
+    .unit {
+        right: 35px;
+        font-size: 0.7rem;
+    }
+    
+    .number-controls {
+        width: 20px;
+    }
+    
+    .status-indicator {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Para tablets en orientación horizontal */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .overlayClass {
+        max-width: 80%;
+        height: 75vh;
+    }
+}
+
+/* Para pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 360px) {
+
+    .rehab-containerOverlay-header h1 {
+        font-size: 1rem;
+    }
+    
+    .patient-form-container {
+        padding: 0.5rem;
+    }
+    
+    .form-control {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
