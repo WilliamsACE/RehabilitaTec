@@ -32,7 +32,7 @@ tenga uno en su casa.
 a futuro se planea integrar un registro para que los pacientes puedan checar su progreso y sus recomendaciones desde la propia pagina web
 se planea que cada person pueda monitoriear su avance en tiempo real.
 
-por: Nestor Tec y Williams Cauntu
+por: Nestor Tec y Williams Cantu
 
 ![WhatsApp Image 2026-01-31 at 12 41 43 AM](https://github.com/user-attachments/assets/28128db2-f4ce-4bc0-807b-44a9b4e08d1c)
 
